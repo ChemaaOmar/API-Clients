@@ -1,7 +1,13 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
-import crud, schemas
-from database import SessionLocal, engine, Base
+import os 
+import sys
+
+# Ajouter le chemin du répertoire parent au sys.path
+sys.path.insert(0, os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
+
+from . import crud, schemas
+from .database import SessionLocal, engine, Base
 
 # Créer toutes les tables de la base de données
 Base.metadata.create_all(bind=engine)

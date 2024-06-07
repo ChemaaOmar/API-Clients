@@ -1,5 +1,9 @@
+import logging
 from sqlalchemy.orm import Session
-import models, schemas
+from . import models, schemas
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 def get_customer(db: Session, customer_id: int):
     return db.query(models.Customer).filter(models.Customer.id == customer_id).first()
