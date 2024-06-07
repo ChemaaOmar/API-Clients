@@ -3,4 +3,5 @@ uvicorn
 sqlalchemy
 databases
 pydantic
+alembic
 python-dotenv
