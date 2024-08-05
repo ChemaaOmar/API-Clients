@@ -28,6 +28,7 @@ class CustomersAPITestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Créer les tables de la base de données de test
+        Base.metadata.drop_all(bind=engine) 
         Base.metadata.create_all(bind=engine)
         cls.client = TestClient(app)
 
@@ -35,6 +36,14 @@ class CustomersAPITestCase(unittest.TestCase):
     def tearDownClass(cls):
         # Supprimer les tables de la base de données de test
         Base.metadata.drop_all(bind=engine)
+
+    def setUp(self):
+        self.session = TestingSessionLocal()
+        self.session.query(Base.metadata.tables['customers']).delete()
+        self.session.commit()
+
+    def tearDown(self):
+        self.session.close()
 
     def test_create_customer(self):
         # Tester la création d'un nouveau client
