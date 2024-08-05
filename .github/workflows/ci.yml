@@ -27,14 +27,13 @@ jobs:
     - name: Start services
       run: docker-compose up -d
 
-    - name: Wait for services to be ready
+    - name: Show services
       run: |
-        sleep 5
         docker ps
 
     - name: Run tests
       run: |
-        sleep 1
+        docker-compose exec -T web python -m unittest discover
 
     - name: Stop services
       run: docker-compose down
