@@ -26,7 +26,7 @@ jobs:
           --health-retries 5
 
     env:
-      DATABASE_URL: postgresql://admin:admin@localhost:5432/clients
+      DATABASE_URL: postgresql://postgres:root@db/clients
 
     steps:
     - name: Checkout code
