@@ -40,17 +40,17 @@ class CustomersAPITestCase(unittest.TestCase):
         # Tester la création d'un nouveau client
         response = self.client.post(
             "/customers/",
-            json={"name": "Clement", "email": "clement@epsi.fr"}
+            json={"name": "Clement", "email": "clement@epsi.com"}
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["name"], "Clement")
-        self.assertEqual(response.json()["email"], "clement@epsi.fr")
+        self.assertEqual(response.json()["email"], "clement@epsi.com")
 
     def test_read_customer(self):
         # Tester la lecture d'un client existant
         response = self.client.post(
             "/customers/",
-            json={"name": "Paul", "email": "paul@epsi.fr"}
+            json={"name": "Paul", "email": "paul@epsi.com"}
         )
         customer_id = response.json()["id"]
 
@@ -67,13 +67,13 @@ class CustomersAPITestCase(unittest.TestCase):
         # Tester la mise à jour d'un client existant
         response = self.client.post(
             "/customers/",
-            json={"name": "Younes", "email": "younes@epsi.fr"}
+            json={"name": "Younes", "email": "younes@epsi.com"}
         )
         customer_id = response.json()["id"]
 
         response = self.client.put(
             f"/customers/{customer_id}",
-            json={"name": "Younes Updated", "email": "younes.updated@epsi.fr"}
+            json={"name": "Younes Updated", "email": "younes.updated@epsi.com"}
         )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["name"], "Younes Updated")
@@ -82,7 +82,7 @@ class CustomersAPITestCase(unittest.TestCase):
         # Tester la suppression d'un client existant
         response = self.client.post(
             "/customers/",
-            json={"name": "Omar", "email": "omar@epsi.fr"}
+            json={"name": "Omar", "email": "omar@epsi.com"}
         )
         customer_id = response.json()["id"]
 
