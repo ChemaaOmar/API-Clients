@@ -25,8 +25,10 @@ def get_db():
         db.close()
 
 # Configuration RabbitMQ
+RABBITMQ_URL = os.getenv("RABBITMQ_URL")
+
 async def get_rabbitmq_connection():
-    connection = await aio_pika.connect_robust(os.getenv("RABBITMQ_URL", "amqp://guest:guest@localhost/"))
+    connection = await aio_pika.connect_robust(RABBITMQ_URL)
     return connection
 
 async def publish_message(queue_name: str, message: str):
