@@ -7,8 +7,11 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - rabbitmq
     environment:
       - DATABASE_URL=postgresql://postgres:root@db/clients
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq/
+
   db:
     image: postgres:13
     environment:
@@ -17,3 +20,9 @@ services:
       POSTGRES_DB: clients
     ports:
       - "5433:5432"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
