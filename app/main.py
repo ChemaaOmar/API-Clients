@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends
 from sqlalchemy.orm import Session
 import aio_pika
-import asyncio
 
 import sys
 import os
