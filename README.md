@@ -1,5 +1,8 @@
 # API-Clients
 
+# Creation of the shared network
+docker network create shared-network
+
 # Build app
 docker-compose build
 

@@ -11,6 +11,8 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:root@db/clients
       - RABBITMQ_URL=amqp://guest:guest@rabbitmq/
+    networks:
+      - shared-network
 
   db:
     image: postgres:13
@@ -19,10 +21,18 @@ services:
       POSTGRES_PASSWORD: root
       POSTGRES_DB: clients
     ports:
-      - "5433:5432"
+      - "5434:5432"
+    networks:
+      - shared-network
 
   rabbitmq:
     image: rabbitmq:3-management
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - shared-network
+
+networks:
+  shared-network:
+    external: true
